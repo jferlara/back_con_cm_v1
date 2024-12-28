@@ -11,6 +11,7 @@ import referenciasRoutes from "./routes/referencias.routes.js";
 import diagnosticosRoutes from "./routes/diagnosticos.routes.js";
 import procedimientosRoutes from "./routes/procedimientos.routes.js";
 import imgbdOdontogramaRoutes from "./routes/imgbdOdontograma.routes.js";
+import detalleOdontogramaRoutes from "./routes/detalleOdontograma.routes.js";
 import imgbdFirmaRoutes from "./routes/imgbdFirma.routes.js";
 import signsRoutes from "./routes/signs.routes.js";
 import cors from 'cors'; // Importar cors usando ES Modules
@@ -49,6 +50,7 @@ app.use("/api", referenciasRoutes)
 app.use("/api", diagnosticosRoutes)
 app.use("/api", procedimientosRoutes)
 app.use("/api", imgbdOdontogramaRoutes)
+app.use("/api", detalleOdontogramaRoutes)
 app.use("/api", imgbdFirmaRoutes)
 app.use("/api", reportesRoutes)
 app.use("/api", consentimientosRoutes);
