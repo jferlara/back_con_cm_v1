@@ -14,7 +14,7 @@ export const getOdontograma = async (req, res) => {
   try {
     const { id } = req.params;
     const [rows] = await pool.query(
-      "SELECT message, documento, public_id, fecha, id FROM odontograma_detalle WHERE public_id = ? ORDER BY id DESC LIMIT 1",
+      "SELECT documento,id,num_11,num_12,num_13,num_14,num_15,num_16,num_17,num_18,num_21,num_22,num_23,num_24,num_25,num_26,num_27,num_28,num_31,num_32,num_33,num_34,num_35,num_36,num_37,num_38,num_41,num_42,num_43,num_44,num_45,num_46,num_47,num_48 FROM odontograma_detalle WHERE documento = ? ORDER BY id DESC LIMIT 1",
       [id]
     );
 
