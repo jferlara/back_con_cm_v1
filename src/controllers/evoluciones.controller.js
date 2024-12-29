@@ -19,7 +19,7 @@ export const getEvolucion = async (req, res) => {
     );
 
     if (rows.length <= 0) {
-      return res.status(404).json({ message: "Historia not found" });
+      return res.status(404).json({ message: "Evolucion not found" });
     }
 
     res.json(rows); // Devuelve todos los registros en 'rows'
@@ -36,7 +36,7 @@ export const deleteEvoluciones = async (req, res) => {
     ]);
 
     if (rows.affectedRows <= 0) {
-      return res.status(404).json({ message: "Historias not found" });
+      return res.status(404).json({ message: "Evolucion not found" });
     }
 
     res.sendStatus(204);
@@ -62,12 +62,14 @@ export const createEvolucion = async (req, res) => {
       anestesia,
       codigo_diagnostico,
       codigo_procedimiento,
+      valor,
+      medio_pago,
       fecha,
       hora,
       fecha_registro,
     } = req.body;
     const [result] = await pool.query(
-      "INSERT INTO evoluciones (documento, nombre, sesion, procedimiento, evolucion,firma, odontograma, consentimiento_uno,consentimiento_dos,consentimiento_tres,consentimiento_cuatro,anestesia,codigo_diagnostico,codigo_procedimiento,fecha,hora,fecha_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO evoluciones (documento, nombre, sesion, procedimiento, evolucion,firma, odontograma, consentimiento_uno,consentimiento_dos,consentimiento_tres,consentimiento_cuatro,anestesia,codigo_diagnostico,codigo_procedimiento,valor,medio_pago,fecha,hora,fecha_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?, ?, ?, ?, ?, ?, ?, ?)",
       [
         documento,
         nombre,
@@ -83,6 +85,8 @@ export const createEvolucion = async (req, res) => {
         anestesia,
         codigo_diagnostico,
         codigo_procedimiento,
+        valor,
+        medio_pago,
         fecha,
         hora,
         fecha_registro,
@@ -105,6 +109,8 @@ export const createEvolucion = async (req, res) => {
       anestesia,
       codigo_diagnostico,
       codigo_procedimiento,
+      valor,
+      medio_pago,
       fecha,
       hora,
       fecha_registro,
@@ -132,13 +138,15 @@ export const updateEvolucion = async (req, res) => {
       anestesia,
       codigo_diagnostico,
       codigo_procedimiento,
+      valor,
+      medio_pago,
       fecha,
       hora,
       fecha_registro,
     } = req.body;
 
     const [result] = await pool.query(
-      "UPDATE evoluciones SET documento = IFNULL(?, documento), nombre = IFNULL(?, nombre), sesion = IFNULL(?, sesion), procedimiento = IFNULL(?, procedimiento), evolucion = IFNULL(?, evolucion),firma = IFNULL(?, firma), odontograma = IFNULL(?, odontograma), consentimiento_uno = IFNULL(?, consentimiento_uno), consentimiento_dos = IFNULL(?, consentimiento_dos), consentimiento_tres = IFNULL(?, consentimiento_tres), consentimiento_cuatro = IFNULL(?, consentimiento_cuatro),  anestesia = IFNULL(?, anestesia), codigo_diagnostico = IFNULL(?, codigo_diagnostico),codigo_procedimiento = IFNULL(?, codigo_procedimiento),fecha = IFNULL(?, fecha), hora = IFNULL(?, hora), fecha_registro = IFNULL(?, fecha_registro)   WHERE id = ?",
+      "UPDATE evoluciones SET documento = IFNULL(?, documento), nombre = IFNULL(?, nombre), sesion = IFNULL(?, sesion), procedimiento = IFNULL(?, procedimiento), evolucion = IFNULL(?, evolucion),firma = IFNULL(?, firma), odontograma = IFNULL(?, odontograma), consentimiento_uno = IFNULL(?, consentimiento_uno), consentimiento_dos = IFNULL(?, consentimiento_dos), consentimiento_tres = IFNULL(?, consentimiento_tres), consentimiento_cuatro = IFNULL(?, consentimiento_cuatro),  anestesia = IFNULL(?, anestesia), codigo_diagnostico = IFNULL(?, codigo_diagnostico),codigo_procedimiento = IFNULL(?, codigo_procedimiento),valor = IFNULL(?, valor),medio_pago = IFNULL(?, medio_pago),fecha = IFNULL(?, fecha), hora = IFNULL(?, hora), fecha_registro = IFNULL(?, fecha_registro)   WHERE id = ?",
       [
         documento,
         nombre,
@@ -154,6 +162,8 @@ export const updateEvolucion = async (req, res) => {
         anestesia,
         codigo_diagnostico,
         codigo_procedimiento,
+        valor,
+        medio_pago,
         fecha,
         hora,
         fecha_registro,
